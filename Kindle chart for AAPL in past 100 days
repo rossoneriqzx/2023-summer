@@ -1,0 +1,31 @@
+#!/usr/bin/env python3
+
+import psycopg2
+import pandas as pd
+import mplfinance as mpf
+
+conn = psycopg2.connect(
+    database = "equity_db",
+    host = "edw.cy1s98bz8vio.ca-central-1.rds.amazonaws.com",
+    port = 5555,
+    user = "wealthsigma_etl",
+    password = "algofamily")
+
+cursor = conn.cursor()
+
+cursor.execute('''SELECT security_symbol, open_price, close_price, high_price, low_price, date_key_int
+                  FROM us_equity_daily_finn
+                  WHERE security_symbol = 'AAPL'
+                  ORDER BY date_key_int DESC
+                  LIMIT 100
+               ''')
+
+df = pd.DataFrame(cursor.fetchmany(100), columns=['stock', 'Open', 'Close', 'High', 'Low', 'date_key_int'])
+
+df['date_key_int']=pd.to_datetime(df['date_key_int'],format='%Y%m%d')
+df = df.set_index("date_key_int")
+df.index.name = 'Date'
+
+mpf.plot(df.tail(100), type='candle', mav=(5,10,20), style='yahoo')
+
+conn.close()
