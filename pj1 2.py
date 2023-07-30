@@ -62,30 +62,3 @@ def full_chart(stock, start_date, end_date):
 
     kchart_creator(df2)
     
-
-
-#('AAPL',20221224,20230313)
-
-
-            #add_plot = [mpf.make_addplot(df['UpperB']),
-                        #mpf.make_addplot(df['LowerB']),
-                        #mpf.make_addplot(df['MA20'])]
-
-
-#d是list
-        
-
-#1.
-#画图包装成function
-#输入股票代码，起始日期，终止日期——>图
-#如果股票代码不存在——>“股票不存在”
-#终止日期>起始日期
-#时间跨度bu能超过3个月
-
-#2.
-#价格基础上加一些指标：+volume + vwap+ 布林带
-
-
-
-#3***.
-#把2包装成一个函数。
