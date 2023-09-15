@@ -1,3 +1,4 @@
+
 # 2023-summer
 #!/usr/bin/env python3
 
@@ -7,7 +8,7 @@ import mplfinance as mpf
 import datetime
 import matplotlib.pyplot as plt
 import talib
-    
+
 conn = psycopg2.connect(
 database = "equity_db",
 host = "edw.cy1s98bz8vio.ca-central-1.rds.amazonaws.com",
