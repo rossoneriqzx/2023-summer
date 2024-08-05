@@ -12,7 +12,7 @@ database = "equity_db",
 host = "edw.cy1s98bz8vio.ca-central-1.rds.amazonaws.com",
 port = 5555,
 user = "wealthsigma_etl",
-password = "algofamily")
+password = "")
 cursor = conn.cursor()
 
 def stock_data(stock, start_date, end_date):
